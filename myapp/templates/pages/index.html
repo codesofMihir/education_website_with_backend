@@ -1,0 +1,507 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weducation | Online Education Portal</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link  rel="stylesheet" href="{% static 'style/style.css' %}">
+  <link rel="icon" type="img/png" href="{% static 'img/logo.png' %}">
+
+</head>
+
+<body>
+  <section class="a">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <p>
+            <i class="fa-solid fa-location-dot"></i> Ranchi
+          </p>
+
+        </div>
+        <div class="col-md-4">
+          <p>
+            <i class="fa-solid fa-phone"></i> 9022792222
+
+          </p>
+        </div>
+        <div class="col-md-4">
+          <p>
+            <i class="fa-solid fa-envelope"></i> portal@gmail.com
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="side-nav">
+    <div class="row">
+      <div class="col-md-2">
+        <div id="mySidenav" class="sidenav">
+          <a href="#"><i class="fa-regular fa-house"></i>Home</a>
+          <a href="#"><i class="fa-solid fa-layer-group"></i>Category</a>
+          <!-- <a href="#">Courses</a>
+          <a href="#">Contact Us </a> -->
+          <a href="#"><i class="fa-regular fa-circle-question"></i>Help</a>
+        </div>
+
+        <span class="open-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+      </div>
+
+      <div class="col-md-10">
+        <div class="logo">
+          <img src="{% static 'img/logo.png'%}" alt="Weducation logo">
+          <i class="fa-regular fa-circle-user" id="d" cursor="pointer"></i>
+          <div class="card d-none" id="ocard" height="100%" style="width: 18rem;">
+            <div class="card-body">
+              <p>Login As</p>
+              <a href="{% url 'userlogin'%}" class="btn btn-primary">USER LOGIN</a>
+              <a href="{% url 'register'%}" class="btn btn-primary">FACULTY LOGIN</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <nav>
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+
+  </nav>
+  <section class="m">
+    <div class="jumbotron">
+      <h1 class="display-4">Start Learning Today!</h1>
+      <p class="lead"></p>
+      <hr class="my-4">
+      <p>Unlock your potentials with expert-led course. Build skills that matter, learn at your own pace, and shape your
+        future career.</p>
+      <a  href="about" role="button">Learn more</a>
+      <a  href="#learn-anything" role="button">Explore Courses</a>
+      <div class="container">
+        <div class="stat">
+          <div class="row">
+            <div class="col-md-4"><strong>5,000+</strong><span><br>
+                <p>Students</p>
+              </span></div>
+            <div class="col-md-4"><strong>120+</strong><span><br>
+                <p>Courses</p>
+              </span></div>
+            <div class="col-md-4"><strong>98%</strong><span><br>
+                <p> Success Rate</p>
+              </span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <section class="container my-5">
+
+      <h2 class="text-center mb-4">
+        Why Choose Weducation?
+      </h2>
+
+      <div class="row text-center">
+
+        <div class="col-md-4">
+
+          <i class="fa-solid fa-book fa-3x text-primary mb-3"></i>
+
+          <h4>Quality Courses</h4>
+
+          <p>
+            Industry-oriented courses designed by experienced faculty.
+          </p>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <i class="fa-solid fa-user-graduate fa-3x text-success mb-3"></i>
+
+          <h4>Expert Faculty</h4>
+
+          <p>
+            Learn from experienced teachers with practical knowledge.
+          </p>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <i class="fa-solid fa-certificate fa-3x text-warning mb-3"></i>
+
+          <h4>Certification</h4>
+
+          <p>
+            Receive certificates after successful course completion.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+
+    <section class="container my-5">
+
+      <h2 class="text-center mb-4">
+        Student Testimonials
+      </h2>
+
+      <div class="row">
+
+        <div class="col-md-4">
+
+          <div class="card shadow">
+
+            <div class="card-body" >
+
+              <div style="color:gold">★★★★★</div>
+
+              <p>
+
+                Very helpful courses and excellent faculty.
+
+              </p>
+
+              <strong>- Rahul Kumar</strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="card shadow">
+
+            <div class="card-body">
+
+               <div style="color:gold">★★★★★</div>
+
+              <p>
+
+                The dashboard is easy to use and notes are useful.
+
+              </p>
+
+              <strong>- Priya Singh</strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="card shadow">
+
+            <div class="card-body">
+
+               <div style="color:gold">★★★★★</div>
+
+              <p>
+
+                One of the best education portals for beginners.
+
+              </p>
+
+              <strong>- Aman Verma</strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{% static 'img/dv.png'%}" alt="ei">
+            <div class="card-body">
+              <h5 class="card-title">Expert Instructors</h5>
+              <p class="card-text">Our courses are taught by industry professionals with 10+ years of real-world
+                experience.</p>
+              <!-- <a href="#" class="btn btn-primary">Meet Our Instructors</a> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{%static 'img/ih.png'%}" alt="fl">
+            <div class="card-body">
+              <h5 class="card-title">Flexible Learning</h5>
+              <p class="card-text">Access video lectures, study materials, and asignments anytime, anywhere. Balance
+                your education with your life style on mobile and desktop.</p>
+              <!-- <a href="#" class="btn btn-primary">Explore Courses</a> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="{%static 'img/uh.png'%}" alt="ayt">
+            <div class="card-body">
+              <h5 class="card-title">Certifications</h5>
+              <p class="card-text">Earn industry-recognized certificates upon course completion. Boost your resume and
+                stand out to top employers in your field.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="coursesection">
+    <h1 class="heading" data-oas="zoom-in"><b>Browse Top Essential</b></h1><span class="j">Career Courses</span></h1>
+    <div class="courses" data-oas="fade-right">
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="course">
+            <i class="fa-brands fa-uikit"></i>
+            <span>UI/UX<br />Design</span>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="course">
+            <i class="fa-solid fa-code" "></i>
+            <span>Web<br />Development</span>
+          </div>
+        </div>
+
+        <div class=" col-md-2">
+              <div class="course">
+                <i class="fa-brands fa-code"></i>
+                <span>Digital<br />Marketing</span>
+              </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="course">
+              <i class="fa-brands fa-readme"></i>
+              <span>Practical<br />Learning</span>
+            </div>
+          </div>
+
+
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="imgbox" data-aos="zoom-in">
+      <div class="purple-corner"></div>
+      <img src="{%static 'img/about.jpg'%}" alt="About us image">
+    </div>
+    <div class="text-box" data-aos="fade-right">
+      <small>ABOUT US</small>
+      <h1 class="heading">We provide great<br><span style="color:#e38212">E-Learning platform</span></h1>
+      <span class="highlight">Creative & Digital Agency!</span>
+      <p>One e-learning program has been developed to be a vehicle of delivering multimedia learning solutions for your
+        business.</p>
+      <button class="commonBtn">Read More</button>
+    </div>
+  </section>
+
+
+
+  <section class="cc" id="learn-anything">
+    <h2>You Can Learn Anything,</br>Explore <p>Featured Courses</p>
+    </h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" id="c1">
+          <img src="{%static 'img/c1.jpg'%}" class="card-img-top" alt="fiudo">
+          <p>20 lessons</p>
+          <div class="card-body">
+            <h3 class="card-title">Programming for Everybody getting Started with Python.</h3>
+            <!-- <h4>This courses includes:</h4>
+            <p>17h:39m on-demand videos </p>
+            <p>113 lectures</p>
+            <p>9 Exercises</p>
+            <p>Certificate on completion</p> -->
+            
+            <div class="price">
+              <span>₹535</span>
+              <a href="c1.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="card" id="c2">
+          <img src="{%static 'img/c2.jpg'%}">
+          <p>20 lessons</p>
+          <div class="card-body">
+            <h5 class="card-title">Strategy Law and Organization Foundation </h5>
+            <p class="card-text"></p>
+            <div class="price">
+              <span>₹335</span>
+             <a href="c2.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a> 
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+      <div class="col-md-4">
+        <div class="card" id="c3">
+          <img src="{%static 'img/c3.jpg'%}" class="card-img-top" alt="...">
+          <p>20 lessons</p>
+          <div class="card-body">
+            <h5 class="card-title">10 Tips to Grow Up Audience To progress Bussiness. </h5>
+            <div class="price">
+              <span>₹435</span>
+              <a href="c3.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br></br>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card" id="c1">
+          <img src="{%static 'img/c4.png'%}" class="card-img-top" alt="fiudo">
+          <p>20 lessons</p>
+          <div class="card-body">
+            <h5 class="card-title">Angular Developer</h5>
+            <div class="price">
+              <span>₹635</span>
+             <a href="c4.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="card" id="c2">
+          <img src="{%static 'img/c5.gif'%}">
+          <p>20 lessons</p>
+          <div class="card-body">
+            <h5 class="card-title">React Developer</h5>
+            <p class="card-text"></p>
+            <div class="price">
+              <span>₹245</span>
+             <a href="c5.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a> 
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+      
+
+    </div>
+
+  </section>
+
+
+
+
+  <section class="b">
+    <div class="footer">
+      <footer class="bg-dark text-white text-center p-4">
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook<i
+              class="fa-brands fa-facebook"></i></a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter<i
+              class="fa-brands fa-twitter"></i></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">youtube<i
+              class="fa-brands fa-youtube-square"></i></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram<i
+              class="fa-brands fa-instagram"></i></a>
+          <p class="copyright">Copyright © 2026 Education.com, Inc, a division of IXL Learning • All Rights Reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+
+  <script>
+    function openNav() {
+      var nav = document.getElementById("mySidenav");
+      if (nav.style.width === "200px") {
+        nav.style.width = "0";
+      }
+      else {
+        nav.style.width = "200px";
+      }
+    }
+
+    const d = document.getElementById('d');
+    const ocard = document.getElementById('ocard');
+
+    d.addEventListener('click', (event) => {
+      ocard.classList.toggle('d-none');
+      event.stopPropagation();
+    });
+
+    window.addEventListener('click', (event) => {
+      if (!ocard.classList.contains('d-none') && !d.contains(event.target)) {
+        ocard.classList.add('d-none');
+      }
+    });
+
+
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
