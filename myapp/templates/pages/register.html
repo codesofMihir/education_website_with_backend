@@ -21,31 +21,33 @@
                     <div class="card-body">
                         <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
                         <h5>Register</h5>
-                        <form>
+                       
+                        <form method="post" enctype="multipart/form-data" action="{% url 'userlogin' %}">
+                             {% csrf_token %}
 
                             <div class="input-box">
                                 <i class="fa-regular fa-user"></i>
-                                <input type="text" placeholder="Enter your name">
+                                <input type="text" placeholder="Enter your name" name="username">
                             </div>
 
                             <div class="input-box">
                                 <i class="fa-regular fa-envelope"></i>
-                                <input type="email" placeholder="Enter your email">
+                                <input type="email" placeholder="Enter your email" name="email">
                             </div>
 
                             <div class="input-box">
                                 <i class="fa-solid fa-phone"></i>
-                                <input type="number" placeholder="contact">
+                                <input type="number" placeholder="contact" name="contact">
                             </div>
 
                             <div class="input-box">
                                 <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="Create a password">
+                                <input type="password" placeholder="Create a password" name="password">
                                 <i class="fa-regular fa-eye eye"></i>
                             </div>
                             <div class="input-box">
                                 <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="Confirm a password">
+                                <input type="password" placeholder="Confirm a password" name="confirmpassword">
                                 <i class="fa-regular fa-eye eye"></i>
                             </div>
 
