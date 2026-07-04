@@ -22,7 +22,8 @@
                 <div class="card-body">
                     <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
                     <p>USER LOGIN</p>
-                    <form>
+                    <form method="post" enctype="multipart/form-data" action="{% url 'userlogin' %}">
+                             {% csrf_token %}
 
                         <div class="input-box">
                             <i class="fa-regular fa-user"></i>
@@ -54,21 +55,6 @@
                         </p>
                     </form>
     </section>
-
-    <script>
-        function login(event) {
-            event.preventDefault();
-
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
-            if (username !== "" && password !== "") {
-                window.location.href = "studentdashboard.html";
-            } else {
-                alert("Please enter username and password!");
-            }
-        }
-    </script>
 
 
 

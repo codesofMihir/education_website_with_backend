@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 
 # Create your views here.
@@ -18,13 +19,41 @@ def registerview(request):
 
     if password!=confirmpassword:
         return redirect(request, "register")
+    user=User.objects.filter(Username=username)
+    if user.exists():
+        messages.error(request,"username already taken")
+        return redirect('register')
+
     createuser=User.objects.create_user(username=username,email=email,contact=contact,password=password)
+   
+    
     createuser.save()
     return redirect('userlogin')
 
-# def loginview(request):
-#     if request.method=='POST':
-#         UserWarning
+def loginview(request):
+    if request.method=='POST':
+        Username=request.POST.get('username')
+        password=request.POST.get('password')
+
+    if not User.objects.filter(Username= Username).exists():
+        messages.error(request,'Invalid username')
+        return redirect('register')
+
+    user=authenticate(Username=Username,password=password)
+
+    if user is None:
+        messages.error(request,'Invalid password')
+        return redirect('userlogin')
+
+
+    else:
+        login(user)
+        return render('index')
+
+    return render('index')
+
+    
+
 
 
 def log(request):
