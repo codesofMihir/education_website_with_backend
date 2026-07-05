@@ -26,7 +26,6 @@ def registerview(request):
 
     createuser=User.objects.create_user(username=username,email=email,contact=contact,password=password)
    
-    
     createuser.save()
     return redirect('userlogin')
 
@@ -39,7 +38,7 @@ def loginview(request):
         messages.error(request,'Invalid username')
         return redirect('register')
 
-    user=authenticate(Username=Username,password=password)
+    user=authenticate(username=Username,password=password)
 
     if user is None:
         messages.error(request,'Invalid password')

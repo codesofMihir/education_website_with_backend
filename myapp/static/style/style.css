@@ -101,14 +101,20 @@ body {
 
     .col-md-10 i{
         position: absolute;
-        right:50px;
+        right:100px;
         top:30px;
         font-size:40px;
     }
 
+    .col-md-10 .d1{
+        display: flex;
+        justify-content: right ;
+    }
+
 
     .logo img {
-        margin-top: 20px;
+        margin-top: 10px;
+        padding-bottom: 0px;
         justify-content: center;
         border-radius: 50%;
         width: 80px;
