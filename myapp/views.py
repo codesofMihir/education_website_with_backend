@@ -10,46 +10,40 @@ def indexview(request):
     return render(request,'pages\index.html')
 @csrf_exempt
 def registerview(request):
-    if request.method=='POST':
-        username=request.POST.get('username')
-        email=request.POST.get('email')
-        contact=request.POST.get('contact')
-        password=request.POST.get('password')
-        confirmpassword=request.POST.get('confirmpassword')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirmpassword = request.POST.get('confirmpassword')
 
-    if password!=confirmpassword:
-        return redirect(request, "register")
-    user=User.objects.filter(Username=username)
-    if user.exists():
-        messages.error(request,"username already taken")
-        return redirect('register')
+        if password != confirmpassword:
+            messages.error(request, 'Passwords do not match')
+            return redirect('register')
 
-    createuser=User.objects.create_user(username=username,email=email,contact=contact,password=password)
-   
-    createuser.save()
-    return redirect('userlogin')
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already taken')
+            return redirect('register')
 
-def loginview(request):
-    if request.method=='POST':
-        Username=request.POST.get('username')
-        password=request.POST.get('password')
-
-    if not User.objects.filter(Username= Username).exists():
-        messages.error(request,'Invalid username')
-        return redirect('register')
-
-    user=authenticate(username=Username,password=password)
-
-    if user is None:
-        messages.error(request,'Invalid password')
+        createuser = User.objects.create_user(username=username, email=email, password=password)
+        createuser.save()
         return redirect('userlogin')
 
+    return render(request, 'pages/register.html')
 
-    else:
-        login(user)
-        return render('index')
+def loginview(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-    return render('index')
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            messages.error(request, 'Invalid username or password')
+            return redirect('userlogin')
+
+        login(request, user)
+        return redirect('index')
+
+    return render(request, 'pages/userlogin.html')
 
     
 

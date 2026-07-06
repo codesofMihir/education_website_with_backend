@@ -22,22 +22,17 @@
                 <div class="card-body">
                     <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
                     <p>USER LOGIN</p>
-                    <form method="post" enctype="multipart/form-data" action="{% url 'userlogin' %}">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'loginaction' %}">
                              {% csrf_token %}
 
                         <div class="input-box">
                             <i class="fa-regular fa-user"></i>
-                            <input type="text" placeholder="Enter your name">
+                            <input type="text" name="username" placeholder="Enter your name">
                         </div>
 
                         <div class="input-box">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Enter a password">
-                            <i class="fa-regular fa-eye eye"></i>
-                        </div>
-                        <div class="input-box">
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" placeholder="Renter a password">
+                            <input type="password" name="password" placeholder="Enter your password">
                             <i class="fa-regular fa-eye eye"></i>
                         </div>
 

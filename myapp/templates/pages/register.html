@@ -22,7 +22,7 @@
                         <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
                         <h5>Register</h5>
                        
-                        <form method="post" enctype="multipart/form-data" action="{% url 'userlogin' %}">
+                        <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
                              {% csrf_token %}
 
                             <div class="input-box">
@@ -33,11 +33,6 @@
                             <div class="input-box">
                                 <i class="fa-regular fa-envelope"></i>
                                 <input type="email" placeholder="Enter your email" name="email">
-                            </div>
-
-                            <div class="input-box">
-                                <i class="fa-solid fa-phone"></i>
-                                <input type="number" placeholder="contact" name="contact">
                             </div>
 
                             <div class="input-box">
