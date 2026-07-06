@@ -21,7 +21,13 @@
                     <div class="card-body">
                         <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
                         <h5>Register</h5>
-                       
+                        {% if messages %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for message in messages %}
+                                    <div>{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                         <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
                              {% csrf_token %}
 
@@ -51,7 +57,7 @@
                                 <label> I accept all terms & conditions</label>
                             </div>
 
-                            <button class="btn btn-primary" submit">Register</button>
+                            <button class="btn btn-primary" type="submit">Register</button>
 
                             <p class="login">
                                 Already have an account?
