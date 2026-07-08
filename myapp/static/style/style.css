@@ -14,6 +14,12 @@ body {
         min-height: 100vh;
     }
 
+    /* .a .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    } */
+
     /* for side nav bar */
     .sidenav {
         height: 95%;
@@ -92,14 +98,29 @@ body {
     }
 
     .col-md-10 .lg{
-        margin-top: 25px;
-        margin-left: 100px;
+        background:linear-gradient(90deg, #1a73e8, #28a745);
+        color:#fff;
+        padding: 8px 24px;
+        border-radius: 6px;
+        font-weight: 200;
+        text-decoration: none;
+        transition: background 0.2 ease ;
     }
 
-    .navbar_testme p{
-        text-align:right;
-        margin-top: -45px;
+    .col-md-10 .lg:hover{
+        background:#2a41ad;
+    }
+
+    .navbar_testme {
+        margin-left:auto;
+        padding-right:20px;
+        /* margin-top: -45px; */
        
+    }
+    .navbar_testme p{
+        margin-top:0;
+        font-size:14px;
+        color:#fff;
     }
 
     /* .col-md-10 a{
