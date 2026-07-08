@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Products(models.Model):
+class Courses(models.Model):
     user=models.ForeignKey('auth.user',on_delete=models.CASCADE)
     product_name=models.CharField(max_length=200)
     description=models.TextField()
