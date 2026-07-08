@@ -60,7 +60,9 @@ body {
     .logo {
         display: flex;
         justify-content: flex-start;
-
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
     .col-md-10 #ocard p{
@@ -89,15 +91,25 @@ body {
 
     }
 
-    .col-md-10 a{
+    .col-md-10 .lg{
+        margin-top: 25px;
+        margin-left: 100px;
+    }
+
+    .navbar_testme p{
+        text-align:right;
+        margin-top: -45px;
+       
+    }
+
+    /* .col-md-10 a{
         margin-top: 20px;
         background: #3a56d4;
-        width:50%;
         color:#000;
         display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        justify-content:flex-end;
+        align-items: right;
+    } */
 
     .col-md-10 i{
         position: absolute;
@@ -896,8 +908,25 @@ body {
     }
 
     .logo {
-        width: 50%;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0;
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    .col-md-10 .lg {
+        margin: 0;
+    }
+
+    .col-md-10 .navbar_testme p {
+        margin: 0;
+    }
+
+    .col-md-10 i {
+        position: static;
+        right: auto;
+        top: auto;
+        font-size: 28px;
     }
 
     .about .imgbox,
@@ -960,12 +989,26 @@ body {
 
     .r .card{
     margin-top:10px;}
+
+    .col-md-10 .navbar_testme p{
+       margin-top: -150px ;
+       margin-left:200px;
+        
+    }
 }
 
 
 @media (max-width:576px) {
     .logo {
-        width: 80%;
+        width: 100%;
+    }
+
+    .col-md-10 .lg {
+        font-size: 14px;
+    }
+
+    .col-md-10 .navbar_testme p {
+        font-size: 14px;
     }
 
     .about {

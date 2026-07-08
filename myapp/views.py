@@ -3,11 +3,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def explore_view(request):
+    return render(request, 'userlogin.html')
+
 
 
 # Create your views here.
 def indexview(request):
+    #  scroll_banned = False
+    # form = AuthenticationForm()
+
+    # # If user is a guest, activate the scroll ban overlay
+    # if not request.user.is_authenticated:
+    #     scroll_banned = True
     return render(request,'pages\index.html')
+
 @csrf_exempt
 def registerview(request):
     if request.method == 'POST':

@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link  rel="stylesheet" href="{% static 'style/style.css' %}">
+  <link  rel="stylesheet" href="{% static 'style/style.css' %}?v=1">
   <link rel="icon" type="img/png" href="{% static 'img/logo.png' %}">
 
 </head>
@@ -61,23 +61,23 @@
       </div>
 
 
-      {%if user.is_authenticated%}
-      <span class="navbar_test me">
-        welcome,{{user.email}}!
-      </span>
-      {%endif%}
       <div class="col-md-10">
         <div class="logo">
           <img src="{% static 'img/logo.png'%}" alt="Weducation logo">
           <i class="fa-regular fa-circle-user" id="d" cursor="pointer"></i>
+          <a class="lg"  href="{% url 'userlogin'%}" >USER LOGIN</a>
           <div class="card d-none" id="ocard" height="100%" style="width: 18rem;">
             <div class="card-body">
               <p>Login As</p>
-              <a href="{% url 'userlogin'%}" class="btn btn-primary">USER LOGIN</a>
               <a href="{% url 'logout'%}" class="btn btn-primary">logout</a>
               <a href="{% url 'register'%}" class="btn btn-primary">FACULTY LOGIN</a>
             </div>
           </div>
+          {%if user.is_authenticated%}
+      <div class="navbar_testme">
+        <p>welcome,{{user.email}}!</p>
+      </div>
+      {%endif%}
         </div>
       </div>
     </div>
