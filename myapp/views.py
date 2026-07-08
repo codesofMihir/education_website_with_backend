@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .models import *
 
 @login_required
 def explore_view(request):
@@ -19,7 +20,16 @@ def indexview(request):
     # # If user is a guest, activate the scroll ban overlay
     # if not request.user.is_authenticated:
     #     scroll_banned = True
-    return render(request,'pages\index.html')
+    course=Courses.objects.all()
+    context={
+        'coursedata':course
+    }
+        
+
+    
+
+    return render(request,'pages\index.html' , context)
+
 
 @csrf_exempt
 def registerview(request):

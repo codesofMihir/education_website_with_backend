@@ -364,11 +364,12 @@
     </h2>
     <div class="row">
       <div class="col-md-4">
+        {%for c in coursedata%}
         <div class="card" id="c1">
           <img src="{%static 'img/c1.jpg'%}" class="card-img-top" alt="fiudo">
           <p>20 lessons</p>
           <div class="card-body">
-            <h3 class="card-title">Programming for Everybody getting Started with Python.</h3>
+            <h3 class="card-title">{{c.product_name}}</h3>
             <!-- <h4>This courses includes:</h4>
             <p>17h:39m on-demand videos </p>
             <p>113 lectures</p>
@@ -376,11 +377,12 @@
             <p>Certificate on completion</p> -->
 
             <div class="price">
-              <span>₹535</span>
+              <span>{{c.price}}</span>
               <a href="c1.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a>
             </div>
           </div>
         </div>
+        {%endfor%}
       </div>
 
 
