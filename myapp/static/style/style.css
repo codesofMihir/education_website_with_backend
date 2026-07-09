@@ -731,27 +731,14 @@ body {
 }
 
 
-.cc .row #c1{
+.cc .row .card{
     display: flex;
     flex-direction: column;
-    background: whitesmoke;
+    background: rgb(234, 234, 234);
     border-radius: 8px;
     box-shadow: 0px 0 15px rgba(0, 0, 0, 0.15);
     height: fit-content;
     width: fit-content;
-
-}
-.cc .row #c2{
-    background: whitesmoke;
-    border-radius: 8px;
-    box-shadow: 0px 0 15px rgba(0, 0, 0, 0.15);
-
-}
-.cc .row #c3{
-    background: whitesmoke;
-    border-radius: 8px;
-    box-shadow: 0px 0 15px rgba(0, 0, 0, 0.15);
-
 }
 
 .cc .row .price span{
