@@ -363,23 +363,25 @@
     <h2>You Can Learn Anything,</br>Explore <p>Featured Courses</p>
     </h2>
     <div class="row">
-      <div class="col-md-4">
-        {%for c in coursedata%}
-        <div class="card" id="c1">
-          <img src="{%static 'img/c1.jpg'%}" class="card-img-top" alt="fiudo">
-          <p>20 lessons</p>
-          <div class="card-body">
-            <h3 class="card-title">{{c.product_name}}</h3>
-            <div class="price">
-              <span>{{c.price}}</span>
-              <a href="c1.html" class="btn btn-primary" style="display: block; margin:0 auto;">Enroll Now</a>
+      {% for c in coursedata %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{c.product_image.url}}" class="card-img-top" alt="course">
+            <p>20 lessons</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ c.product_name }}</h5>
+              <div class="price">
+                <span>{{ c.price }}</span>
+                <a href="#" class="btn btn-primary" style="display:block; margin:0 auto;">Enroll Now</a>
+              </div>
             </div>
           </div>
         </div>
-        {%endfor%}
-      </div>
+      {% empty %}
+        <div class="col-12"><p class="text-center">No courses available.</p></div>
+      {% endfor %}
 
-
+<!-- 
       <div class="col-md-4">
         <div class="card" id="c2">
           <img src="{%static 'img/c2.jpg'%}">
@@ -447,7 +449,7 @@
         </div>
 
 
-      </div>
+      </div> -->
 
 
 
