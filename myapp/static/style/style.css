@@ -22,7 +22,7 @@ body {
 
     /* for side nav bar */
     .sidenav {
-        height: 95%;
+        height: fit-content;
         width: 0;
         position: fixed;
         z-index: 1;
@@ -733,6 +733,8 @@ body {
     background: whitesmoke;
     border-radius: 8px;
     box-shadow: 0px 0 15px rgba(0, 0, 0, 0.15);
+    height: fit-content;
+    width: fit-content;
 
 }
 .cc .row #c2{
