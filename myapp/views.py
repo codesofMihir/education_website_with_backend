@@ -90,7 +90,7 @@ def fclog(request):
     return render(request,'pages/facultylogin.html')
 
 def viewc1(request):
-    return render(request,'c1.html')
+    return render(request,'pages/c1.html')
 def viewc2(request):
     return render(request,'c2.html')
 def viewc3(request):
