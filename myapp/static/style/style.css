@@ -108,7 +108,7 @@ body {
     }
 
     .col-md-10 .lg:hover{
-        background:#2a41ad;
+        background:linear-gradient(90deg, #d4d7db, #19af3c);
     }
 
     .navbar_testme {
