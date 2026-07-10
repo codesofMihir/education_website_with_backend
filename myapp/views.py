@@ -64,6 +64,7 @@ def loginview(request):
             return redirect('userlogin')
 
         login(request, user)
+        messages.success(request,'login successful')
         return redirect('index')
 
     return render(request, 'pages/userlogin.html')
@@ -92,10 +93,10 @@ def fclog(request):
 def viewc1(request):
     return render(request,'pages/c1.html')
 def viewc2(request):
-    return render(request,'c2.html')
+    return render(request,'pages/c2.html')
 def viewc3(request):
-    return render(request,'c3.html')
+    return render(request,'pages/c3.html')
 def viewc4(request):
-    return render(request,'c4.html')
+    return render(request,'pages/c4.html')
 def viewc5(request):
-    return render(request,'c5.html')
+    return render(request,'pages/c5.html')

@@ -16,18 +16,12 @@
 </head>
 
 <body class="r">
+     {% include 'msg.html' %}
     <section class="ab">
                 <div class="card"  height="80%" style="width: 20rem;">
                     <div class="card-body">
                         <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
-                        <h5>Register</h5>
-                        {% if messages %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for message in messages %}
-                                    <div>{{ message }}</div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+                       
                         <form method="post" enctype="multipart/form-data" action="{% url 'register' %}">
                              {% csrf_token %}
 

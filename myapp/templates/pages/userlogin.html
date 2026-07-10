@@ -17,18 +17,13 @@
 </head>
 
 <body class="ir">
+     {% include 'msg.html' %}
     <section class="ulogin">
             <div class="card" style="width:20rem">
                 <div class="card-body">
                     <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
                     <p>USER LOGIN</p>
-                    {% if messages %}
-                        <div class="alert alert-danger" role="alert">
-                            {% for message in messages %}
-                                <div>{{ message }}</div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                   
                     <form method="post" enctype="multipart/form-data" action="{% url 'loginaction' %}">
                              {% csrf_token %}
 
