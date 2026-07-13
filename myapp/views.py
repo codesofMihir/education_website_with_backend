@@ -78,6 +78,14 @@ def course_detail(request, course_id):
         'course': course,
         'is_enrolled': is_enrolled,
     })
+@login_required
+def enroll_course(request, course_id):
+    course = get_object_or_404(Courses, id=course_id)
+    if request.method == 'POST':
+        Enrollment.objects.get_or_create(student=request.user, course=course)
+        messages.success(request, f'Enrolled in {course.product_name}')
+    return redirect('course_detail', course_id=course.id)
+    
 
 def logoutview(request):
     logout(request)

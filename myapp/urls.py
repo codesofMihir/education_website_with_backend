@@ -10,6 +10,7 @@ urlpatterns=[
     path('facultydashboard/',fcdash,name='facultydashboard'),
     path('facultylogin/',fclog,name='facultylogin'),
     path('course/<int:course_id>/', course_detail, name='course_detail'),
+    path('course/<int:course_id>/enroll/', enroll_course, name='enroll_course'),
     path('c1/',viewc1,name='c1'),
     path('c2/',viewc1,name='c2'),
     path('c3/',viewc1,name='c3'),

@@ -722,36 +722,35 @@ body {
 .cc .row .card{
     display: flex;
     flex-direction: column;
-    height:100%;
-    width:100%;
-}
-.cc .col-md-4 p{
-    text-align: center;
-    color:#6add5d;
-}
-
-
-.cc .row .card{
-    display: flex;
-    flex-direction: column;
     background: rgb(234, 234, 234);
     border-radius: 8px;
     box-shadow: 0px 0 15px rgba(0, 0, 0, 0.15);
-    height: fit-content;
-    width: fit-content;
+    height: 100%;
+    width: 100%;
+}
+
+.cc .row > .col-md-4 {
+    display: flex;
+}
+
+.cc .col-md-4 p{
+    text-align: center;
+    color:#6add5d;
 }
 
 .cc .row .price span{
     color:orangered;
     font-weight:800;
 }
+
+.cc .row .price {
+    margin-top: auto;
+}
+
 .cc .row .col-md-4 img{
     aspect-ratio: 3/2;
     overflow: hidden;
-    object-fit:fill;
-    width:100%;
-    padding: 15px 15px;
-    border-radius: 8px;
+    object-fit: cover;
 }
 
 
