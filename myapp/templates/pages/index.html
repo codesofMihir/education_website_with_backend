@@ -359,8 +359,7 @@
               <h5 class="card-title">{{ c.product_name }}</h5>
               <div class="price">
                 <span>₹{{ c.price }}</span>
-                <a href="{% url 'c1'%}" class="btn btn-primary" style="display:block; margin:0 auto;">Enroll Now</a>
-              </div>
+                 <a href="{% url 'course_detail' c.id %}" class="btn btn-primary" style="display:block; margin:0 auto;">Enroll Now</a>
             </div>
           </div>
         </div>

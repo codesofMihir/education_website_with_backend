@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us | Weducation{% endblock %}
+
+{% block content %}
+<section class="container my-5" style="max-width: 900px;">
+    <h1 class="text-center mb-4">Contact Us</h1>
+    <p class="text-center">Have a question, feedback, or need help? Send us a message and we'll get back to you.</p>
+
+    {% include 'msg.html' %}
+
+    <div class="row mt-4">
+        <div class="col-md-5 mb-4">
+            <h4>Reach us directly</h4>
+            <p><i class="fa-solid fa-location-dot"></i> Ranchi, India</p>
+            <p><i class="fa-solid fa-phone"></i> 9022792222</p>
+            <p><i class="fa-solid fa-envelope"></i> portal@gmail.com</p>
+        </div>
+
+        <div class="col-md-7">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.subject.id_for_label }}" class="form-label">Subject</label>
+                    {{ form.subject }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.message.id_for_label }}" class="form-label">Message</label>
+                    {{ form.message }}
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

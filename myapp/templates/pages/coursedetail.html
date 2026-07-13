@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ course.product_name }}{% endblock %}
+
+{% block content %}
+<section class="carddesc">
+    <div class="container">
+        <h1 style="text-align: center; background-color: rgb(129, 129, 221);">{{ course.product_name }}</h1>
+
+        <div class="box" style="margin:0 auto; max-width:600px; border:2px solid black; border-radius: 12px; padding: 20px;">
+            {% if course.product_image %}
+                <img src="{{ course.product_image.url }}" alt="{{ course.product_name }}" style="width:100%; border-radius: 8px;">
+            {% endif %}
+
+            <p style="margin-top:15px;"><strong>Price:</strong> ₹{{ course.price }}</p>
+
+            <p class="desc">
+                <strong>Description:</strong><br>
+                {{ course.description|default:"No description available yet." }}
+            </p>
+
+            {% if request.user.is_authenticated %}
+                {% if is_enrolled %}
+                    <p style="text-align:center; font-weight:bold; color: green;">✓ You are enrolled in this course</p>
+                    <a href="{% url 'studentdashboard' %}" class="btn btn-primary" style="display:block; width:fit-content; margin:15px auto;">Go to Dashboard</a>
+                {% else %}
+                    <form method="post" action="{% url 'enroll_course' course.id %}" style="text-align:center;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary" style="margin:15px auto;">Enroll Now</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <p style="text-align:center;">
+                    <a href="{% url 'userlogin' %}">Log in</a> to enroll in this course.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

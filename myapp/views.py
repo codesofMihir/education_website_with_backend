@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
@@ -68,6 +68,16 @@ def loginview(request):
         return redirect('index')
 
     return render(request, 'pages/userlogin.html')
+
+def course_detail(request, course_id):
+    course = get_object_or_404(Courses, id=course_id)
+    is_enrolled = False
+    if request.user.is_authenticated:
+        is_enrolled = Enrollment.objects.filter(student=request.user, course=course).exists()
+    return render(request, 'pages/coursedetail.html', {
+        'course': course,
+        'is_enrolled': is_enrolled,
+    })
 
 def logoutview(request):
     logout(request)
