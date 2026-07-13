@@ -44,6 +44,7 @@
         <div id="mySidenav" class="sidenav">
           <a href="#"><i class="fa-regular fa-house"></i>Home</a>
           <a href="#"><i class="fa-solid fa-layer-group"></i>Category</a>
+          <a href="#aboutsec"><i class="fa-solid fa-layer-group"></i>About Us</a>
           <!-- <a href="#">Courses</a>
           <a href="#">Contact Us </a> -->
           <a href="#"><i class="fa-regular fa-circle-question"></i>Help</a>
@@ -329,7 +330,7 @@
     </div>
   </section>
 
-  <section class="about">
+  <section class="about" id="aboutsec">
     <div class="imgbox" data-aos="zoom-in">
       <div class="purple-corner"></div>
       <img src="{%static 'img/about.jpg'%}" alt="About us image">
@@ -340,7 +341,8 @@
       <span class="highlight">Creative & Digital Agency!</span>
       <p>One e-learning program has been developed to be a vehicle of delivering multimedia learning solutions for your
         business.</p>
-      <button class="commonBtn">Read More</button>
+      <a href="{% url 'aview'%}"
+       <button class="commonBtn">Read More</button></a>
     </div>
   </section>
 
@@ -470,6 +472,7 @@
       ocard.classList.toggle('d-none');
       event.stopPropagation();
     });
+
 
     window.addEventListener('click', (event) => {
       if (!ocard.classList.contains('d-none') && !d.contains(event.target)) {

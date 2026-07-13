@@ -10,7 +10,8 @@ from .models import *
 def explore_view(request):
     return render(request, 'userlogin.html')
 
-
+def about_view(request):
+    return render(request,'pages/about.html')
 
 # Create your views here.
 def indexview(request):
@@ -85,7 +86,7 @@ def enroll_course(request, course_id):
         Enrollment.objects.get_or_create(student=request.user, course=course)
         messages.success(request, f'Enrolled in {course.product_name}')
     return redirect('course_detail', course_id=course.id)
-    
+
 
 def logoutview(request):
     logout(request)
@@ -100,8 +101,12 @@ def log(request):
 def rlog(request):
     return render(request,'pages/register.html')
 
+@login_required
 def stdash(request):
-    return render(request,'pages/studentdashboard.html')
+    enrollments = Enrollment.objects.filter(student=request.user).select_related('course')
+    return render(request, 'pages/studentdashboard.html', {
+        'enrollments': enrollments,
+    })
 
 def fcdash(request):
     return render(request,'pages/facultydashboard.html')
