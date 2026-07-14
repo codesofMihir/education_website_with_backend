@@ -12,12 +12,14 @@ def explore_view(request):
 
 def about_view(request):
     return render(request,'pages/about.html')
+@csrf_exempt
 def contact_view(request):
     if request.method == 'POST':
         name = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         subject = request.POST.get('subject', '').strip()
         message = request.POST.get('message', '').strip()
+        print(name,email,subject,message)
 
         ContactMessage.objects.create(
             name=name,
@@ -84,7 +86,7 @@ def loginview(request):
 
         login(request, user)
         messages.success(request,'login successful')
-        return redirect('index')
+        return redirect('studentdashboard')
 
     return render(request, 'pages/userlogin.html')
 

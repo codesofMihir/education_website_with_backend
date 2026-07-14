@@ -6,91 +6,10 @@
 {% block content %}
 
 
-  <section class="a">
-    <div class="container">
-      {% include 'msg.html' %}
-      <div class="row">
-        <div class="col-md-4">
-          <p>
-            <i class="fa-solid fa-location-dot"></i> Ranchi
-          </p>
-
-        </div>
-        <div class="col-md-4">
-          <p>
-            <i class="fa-solid fa-phone"></i> 9022792222
+   {% include "nav.html" %}
 
 
-          </p>
-        </div>
-        <div class="col-md-4">
-          <p>
-            <i class="fa-solid fa-envelope"></i> portal@gmail.com
-          </p>
-        </div>
-        {%if user.is_authenticated%}
-        <div class="navbar_testme">
-          <p>welcome,{{user.email}}!</p>
-        </div>
-        {%endif%}
-      </div>
-    </div>
-  </section>
-  
-
-  <div class="side-nav">
-    <div class="row">
-      <div class="col-md-2">
-        <div id="mySidenav" class="sidenav">
-          <a href="#"><i class="fa-regular fa-house"></i>Home</a>
-          <a href="#"><i class="fa-solid fa-layer-group"></i>Category</a>
-          <a href="#aboutsec"><i class="fa-solid fa-layer-group"></i>About Us</a>
-          <a href="{% url 'cview'%}"><i class="fa-solid fa-layer-group"></i>Contact Us</a>
-          <!-- <a href="#">Courses</a>
-          <a href="#">Contact Us </a> -->
-          <a href="#"><i class="fa-regular fa-circle-question"></i>Help</a>
-        </div>
-
-        <span class="open-btn" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-      </div>
-
-
-      <div class="col-md-10">
-        <div class="logo">
-          <img src="{% static 'img/logo.png'%}" alt="Weducation logo">
-          <i class="fa-regular fa-circle-user" id="d" cursor="pointer"></i>
-          {% if user.is_authenticated %}
-          <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <a class="lg" href="{% url 'logout'%}">Logout</a>
-          </form>
-          {% else %}
-          <a class="lg" href="{% url 'userlogin'%}">Log In</a>
-           {% endif %}
-
-          <div class="card d-none" id="ocard" height="100%" style="width: 18rem;">
-            <div class="card-body">
-              <p>Login As</p>
-              <a href="{% url 'register'%}" class="btn btn-primary">FACULTY LOGIN</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <nav>
-    <div class="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </nav>
-
-
-  </nav>
+ 
   <section class="m">
     <div class="jumbotron">
       <h1 class="display-4">Start Learning Today!</h1>
@@ -455,34 +374,6 @@
  
 
 
-  <script>
-    function openNav() {
-      var nav = document.getElementById("mySidenav");
-      if (nav.style.width === "200px") {
-        nav.style.width = "0";
-      }
-      else {
-        nav.style.width = "200px";
-      }
-    }
-
-    const d = document.getElementById('d');
-    const ocard = document.getElementById('ocard');
-
-    d.addEventListener('click', (event) => {
-      ocard.classList.toggle('d-none');
-      event.stopPropagation();
-    });
-
-
-    window.addEventListener('click', (event) => {
-      if (!ocard.classList.contains('d-none') && !d.contains(event.target)) {
-        ocard.classList.add('d-none');
-      }
-    });
-
-
-
-  </script>
+  
 
    {% endblock %}
