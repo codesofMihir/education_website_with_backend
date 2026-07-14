@@ -12,6 +12,8 @@ def explore_view(request):
 
 def about_view(request):
     return render(request,'pages/about.html')
+def contact_view(request):
+    return render(request,'pages/contact.html')
 
 # Create your views here.
 def indexview(request):
