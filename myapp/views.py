@@ -74,6 +74,7 @@ def registerview(request):
 
     return render(request, 'pages/register.html')
 
+@csrf_exempt
 def loginview(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -86,7 +87,7 @@ def loginview(request):
 
         login(request, user)
         messages.success(request,'login successful')
-        return redirect('studentdashboard')
+        return redirect('index')
 
     return render(request, 'pages/userlogin.html')
 
