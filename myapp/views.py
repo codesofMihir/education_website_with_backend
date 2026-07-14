@@ -13,7 +13,23 @@ def explore_view(request):
 def about_view(request):
     return render(request,'pages/about.html')
 def contact_view(request):
-    return render(request,'pages/contact.html')
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        message = request.POST.get('message', '').strip()
+
+        ContactMessage.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message,
+        )
+
+        messages.success(request, 'Your message has been submitted successfully.')
+        return redirect('cview')
+
+    return render(request, 'pages/contact.html')
 
 # Create your views here.
 def indexview(request):

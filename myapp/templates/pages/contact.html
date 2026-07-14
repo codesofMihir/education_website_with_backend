@@ -18,19 +18,19 @@
         </div>
 
         <div class="col-md-7">
-            <form method="post" enctype="multipart/form-data" action="{% url 'cview' %}">
+            <form method="post" action="{% url 'cview' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <input type="text" placeholder="Enter your name" class="form-control"  id="nm">
+                    <input type="text" placeholder="Enter your name" class="form-control" id="nm" name="name" required>
                 </div>
                 <div class="mb-3">
-                    <input type="email" placeholder="Enter your mail Id" class="form-control" id="email">
+                    <input type="email" placeholder="Enter your mail Id" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="mb-3">
-                    <input type="description" placeholder="Subject" class="form-control" id="desc">
+                    <input type="text" placeholder="Subject" class="form-control" id="desc" name="subject">
                 </div>
                 <div class="mb-3">
-                   <input type="text" placeholder="Message" class="form-control" id="mess">
+                    <input type="text" placeholder="Message" class="form-control" id="mess" name="message" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
@@ -38,3 +38,4 @@
     </div>
 </section>
 {% endblock %}
+
