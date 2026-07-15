@@ -71,11 +71,23 @@ body {
         flex-wrap: wrap;
     }
 
-    .col-md-10 #ocard p{
-        color:red;
-        font-size:30px;
-        text-align: center;
+    .logo #ocard{
+        display: none;
+        height: 150px;
+        width: 200px;
     }
+
+    .logo:hover #ocard,
+    .logo #ocard:hover {
+        display: block !important;
+    }
+
+    
+    .col-md-10 #ocard a{
+        color:#000;
+    }
+   
+    
 
     
     

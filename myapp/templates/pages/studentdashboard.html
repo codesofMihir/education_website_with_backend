@@ -10,7 +10,302 @@
 
      {% include 'msg.html' %}
 
+     <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f7;
+      color: #222;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .small-text {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    /* Main layout: left profile + right details */
+    .dashboard {
+      display: flex;
+      gap: 20px;
+    }
+
+    /* Left column */
+    .left-column {
+      flex: 1;
+    }
+
+    /* Right column */
+    .right-column {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Card style */
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    /* Profile card */
+    .profile-header {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #2b7bff;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .student-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .student-course {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      border-radius: 20px;
+      background-color: #e0fce5;
+      color: #23723b;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .info-label {
+      color: #666;
+    }
+
+    .info-value {
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #2b7bff;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background-color: #2b7bff;
+      color: #fff;
+    }
+
+    .btn-outline {
+      background-color: #fff;
+      color: #2b7bff;
+    }
+
+    /* Simple section titles */
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Enrolled course section */
+    .course-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .course-item {
+      flex: 1 1 150px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 14px;
+      background-color: #fafafa;
+    }
+
+    .course-label {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .course-value {
+      font-weight: bold;
+      margin-top: 4px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stat-box {
+      flex: 1 1 150px;
+      border-radius: 6px;
+      padding: 12px;
+      background-color: #f7f9ff;
+      border: 1px solid #e0e5ff;
+      font-size: 14px;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    /* Subject list & tasks */
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .item {
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 8px 10px;
+      background-color: #fafafa;
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .item-sub {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .item-foot {
+      font-size: 12px;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Attendance and remarks */
+    .attendance-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .attendance-box {
+      flex: 1 1 150px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 10px;
+      background-color: #fafafa;
+      font-size: 14px;
+    }
+
+    .attendance-value {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .remarks-box {
+      font-size: 14px;
+      border-radius: 6px;
+      padding: 10px;
+      background-color: #fff7e6;
+      border: 1px solid #ffd18a;
+    }
+
+    /* Recent activity */
+    .activity-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-time {
+      font-size: 12px;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    /* Responsive: stack columns on small screens */
+    @media (max-width: 768px) {
+      .dashboard {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+<!-- 
     <nav class="navbar navbar-dark bg-danger">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">Student Dashboard</a>
@@ -40,6 +335,248 @@
             </div>
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 
+
+
+
+
+  <div class="container">
+    <!-- Simple heading -->
+    <h1>Student Dashboard</h1>
+    <p class="small-text">View student details, enrolled course and current semester progress.</p>
+
+    {%if user.is_authenticated%}
+    <div class="dashboard">
+      <!-- LEFT: Student details -->
+      <div class="left-column">
+        <div class="card">
+          <div class="profile-header">
+            <div class="avatar">MP</div>
+            <div>
+              <div class="student-name">{{user}}</div>
+              <div class="student-course"></div>
+              <span class="status-badge">Active Student</span>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">Enrollment No.</div>
+            <div class="info-value">CSE-24-091</div>
+          </div>
+          
+          
+          
+          <div class="info-row">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{user.email}}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Phone</div>
+            <div class="info-value">+91 98765 43210</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Mentor</div>
+            <div class="info-value">Prof. R. Kumar</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Address</div>
+            <div class="info-value">Patna, Bihar</div>
+          </div>
+
+          <div class="button-row">
+            <button class="btn btn-primary">Download ID</button>
+            <button class="btn btn-outline">View Result</button>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <!-- RIGHT: Course + stats + details -->
+      <div class="right-column">
+        <!-- Enrolled course -->
+        <div class="card">
+          <div class="section-title">Enrolled Course</div>
+          <div class="row mt-4">
+            {% for enrollment in enrollments %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-book fa-3x text-primary"></i>
+                        <h4 class="mt-3">{{ enrollment.course.product_name }}</h4>
+                        <p>Enrolled {{ enrollment.enrolled_at|date:"M d, Y" }}</p>
+                        <a href="{% url 'course_detail' enrollment.course.id %}" class="btn btn-primary">Open</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p>You haven't enrolled in any courses yet. <a href="{% url 'index' %}">Browse courses</a>.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Stats -->
+        <div class="card">
+          <div class="section-title">Current Status</div>
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="stat-label">Overall Attendance</div>
+              <div class="stat-value">86%</div>
+              <div>Good for internal exam.</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Current CGPA</div>
+              <div class="stat-value">8.2</div>
+              <div>Improved this semester.</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Pending Assignments</div>
+              <div class="stat-value">3</div>
+              <div>2 this week.</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Next Exam</div>
+              <div class="stat-value">22 Jul</div>
+              <div>DBMS Practical</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subjects and tasks
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div class="card" style="flex: 1 1 260px;">
+            <div class="section-title">Subject Progress</div>
+            <div class="item-list">
+              <div class="item">
+                <div class="item-top">
+                  <span>DBMS</span>
+                  <span>82% done</span>
+                </div>
+                <div class="item-sub">SQL, joins, normalization</div>
+                <div class="item-foot">
+                  <span>Teacher: A. Sinha</span>
+                  <span>Lab + Theory</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-top">
+                  <span>Python Programming</span>
+                  <span>74% done</span>
+                </div>
+                <div class="item-sub">Functions, files, exceptions</div>
+                <div class="item-foot">
+                  <span>Teacher: S. Verma</span>
+                  <span>Internal marks</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-top">
+                  <span>Computer Networking</span>
+                  <span>68% done</span>
+                </div>
+                <div class="item-sub">OSI, IP, subnetting</div>
+                <div class="item-foot">
+                  <span>Teacher: M. Khan</span>
+                  <span>Packet Tracer</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="card" style="flex: 1 1 260px;">
+            <div class="section-title">Upcoming Tasks</div>
+            <div class="item-list">
+              <div class="item">
+                <div class="item-top">
+                  <span>Submit SQL lab file</span>
+                  <span>Due: 17 Jul</span>
+                </div>
+                <div class="item-sub">10 join queries + screenshots.</div>
+                <div class="item-foot">
+                  <span>DBMS Lab</span>
+                  <span>High priority</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-top">
+                  <span>Python mini project</span>
+                  <span>Due: 19 Jul</span>
+                </div>
+                <div class="item-sub">Menu-driven student record program.</div>
+                <div class="item-foot">
+                  <span>Python</span>
+                  <span>Medium</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-top">
+                  <span>Network topology practice</span>
+                  <span>Due: 22 Jul</span>
+                </div>
+                <div class="item-sub">Router to router in Packet Tracer.</div>
+                <div class="item-foot">
+                  <span>CN Lab</span>
+                  <span>Low</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attendance and remarks -->
+        <div class="card">
+          <div class="section-title">Attendance & Remarks</div>
+          <div class="attendance-row" style="margin-bottom: 10px;">
+            <div class="attendance-box">
+              <div class="course-label">Theory Classes</div>
+              <div class="attendance-value">88%</div>
+              <div class="item-sub">44 of 50 classes attended.</div>
+            </div>
+            <div class="attendance-box">
+              <div class="course-label">Practical Labs</div>
+              <div class="attendance-value">81%</div>
+              <div class="item-sub">22 of 27 labs attended.</div>
+            </div>
+            <div class="attendance-box">
+              <div class="course-label">Overall</div>
+              <div class="attendance-value">Eligible</div>
+              <div class="item-sub">Above minimum required.</div>
+            </div>
+          </div>
+
+          <div class="remarks-box">
+            Mihir is regular in practical work and understands concepts well. 
+            Needs to submit assignments on time and revise networking topics every week.
+          </div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="card">
+          <div class="section-title">Recent Activity</div>
+          <div class="activity-item">
+            <div>
+              <div><strong>DBMS assignment uploaded</strong></div>
+              <div class="item-sub">Lab file v2 submitted successfully.</div>
+            </div>
+            <div class="activity-time">Today</div>
+          </div>
+          <div class="activity-item">
+            <div>
+              <div><strong>Attendance updated</strong></div>
+              <div class="item-sub">Networking practical marked present.</div>
+            </div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+          <div class="activity-item">
+            <div>
+              <div><strong>Internal marks published</strong></div>
+              <div class="item-sub">Python test score updated.</div>
+            </div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 {% endblock %}
