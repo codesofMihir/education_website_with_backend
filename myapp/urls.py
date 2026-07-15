@@ -14,6 +14,8 @@ urlpatterns=[
     path('facultylogin/',fclog,name='facultylogin'),
     path('course/<int:course_id>/', course_detail, name='course_detail'),
     path('course/<int:course_id>/enroll/', enroll_course, name='enroll_course'),
+    path('course/<int:course_id>/faculty/add-content/', faculty_add_content, name='faculty_add_content'),
+
     path('c1/',viewc1,name='c1'),
     path('c2/',viewc1,name='c2'),
     path('c3/',viewc1,name='c3'),

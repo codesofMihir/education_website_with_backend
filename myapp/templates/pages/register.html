@@ -27,14 +27,41 @@
 
                             <div class="input-box">
                                 <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="Create a password" name="password">
-                                <i class="fa-regular fa-eye eye"></i>
+                                <input type="password" placeholder="Create a password" name="password" id="register-password" class="password-input">
+                                <i class="fa-regular fa-eye eye" id="register-eye" aria-label="Toggle password visibility" role="button" tabindex="0"></i>
                             </div>
                             <div class="input-box">
                                 <i class="fa-solid fa-lock"></i>
-                                <input type="password" placeholder="Confirm a password" name="confirmpassword">
-                                <i class="fa-regular fa-eye eye"></i>
+                                <input type="password" placeholder="Confirm a password" name="confirmpassword" id="register-confirmpassword" class="password-input">
+                                <i class="fa-regular fa-eye eye" id="register-eye-confirm" aria-label="Toggle confirm password visibility" role="button" tabindex="0"></i>
                             </div>
+
+                            <script>
+                                (function () {
+                                    function bindToggle(eyeId, inputId) {
+                                        const eye = document.getElementById(eyeId);
+                                        const input = document.getElementById(inputId);
+                                        if (!eye || !input) return;
+
+                                        function toggle() {
+                                            const isHidden = input.type === 'password';
+                                            input.type = isHidden ? 'text' : 'password';
+                                            eye.classList.toggle('fa-eye-slash', isHidden);
+                                        }
+
+                                        eye.addEventListener('click', toggle);
+                                        eye.addEventListener('keydown', function (e) {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                toggle();
+                                            }
+                                        });
+                                    }
+
+                                    bindToggle('register-eye', 'register-password');
+                                    bindToggle('register-eye-confirm', 'register-confirmpassword');
+                                })();
+                            </script>
 
                             <div class="terms">
                                 <input type="checkbox">

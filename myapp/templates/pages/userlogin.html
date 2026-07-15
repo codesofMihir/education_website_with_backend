@@ -23,9 +23,31 @@
 
                         <div class="input-box">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" name="password" placeholder="Enter your password">
-                            <i class="fa-regular fa-eye eye"></i>
+                            <input type="password" name="password" placeholder="Enter your password" id="user-password" class="password-input">
+                            <i class="fa-regular fa-eye eye" id="user-eye" aria-label="Toggle password visibility" role="button" tabindex="0"></i>
                         </div>
+
+                        <script>
+                            (function () {
+                                const eye = document.getElementById('user-eye');
+                                const input = document.getElementById('user-password');
+                                if (!eye || !input) return;
+
+                                function toggle() {
+                                    const isHidden = input.type === 'password';
+                                    input.type = isHidden ? 'text' : 'password';
+                                    eye.classList.toggle('fa-eye-slash', isHidden);
+                                }
+
+                                eye.addEventListener('click', toggle);
+                                eye.addEventListener('keydown', function (e) {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        e.preventDefault();
+                                        toggle();
+                                    }
+                                });
+                            })();
+                        </script>
 
                         <div class="terms">
                             <input type="checkbox">

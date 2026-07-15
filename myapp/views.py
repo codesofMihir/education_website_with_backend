@@ -98,10 +98,17 @@ def course_detail(request, course_id):
     is_enrolled = False
     if request.user.is_authenticated:
         is_enrolled = Enrollment.objects.filter(student=request.user, course=course).exists()
+
+    contents = []
+    if is_enrolled:
+        contents = CourseContent.objects.filter(course=course).order_by('-created_at')
+
     return render(request, 'pages/coursedetail.html', {
         'course': course,
         'is_enrolled': is_enrolled,
+        'contents': contents,
     })
+
 @login_required
 def enroll_course(request, course_id):
     course = get_object_or_404(Courses, id=course_id)
@@ -127,12 +134,55 @@ def rlog(request):
 @login_required
 def stdash(request):
     enrollments = Enrollment.objects.filter(student=request.user).select_related('course')
+    enrolled_course_ids = [e.course_id for e in enrollments]
+    contents = CourseContent.objects.filter(course_id__in=enrolled_course_ids).select_related('course')
+
     return render(request, 'pages/studentdashboard.html', {
         'enrollments': enrollments,
+        'contents': contents,
     })
+
 
 def fcdash(request):
     return render(request,'pages/facultydashboard.html')
+
+
+@login_required
+def faculty_add_content(request, course_id):
+    if not request.user.is_staff:
+        return render(request, 'msg.html', {'message': 'Only faculty can add course content.'})
+
+    course = get_object_or_404(Courses, id=course_id)
+
+    if request.method == 'POST':
+        content_type = request.POST.get('content_type')
+        title = (request.POST.get('title') or '').strip()
+
+        note_file = request.FILES.get('note_file')
+        video_file = request.FILES.get('video_file')
+
+        quiz_question = (request.POST.get('quiz_question') or '').strip() or None
+        quiz_answer = (request.POST.get('quiz_answer') or '').strip() or None
+
+        if not title:
+            return render(request, 'pages/faculty_add_content.html', {'course': course, 'error_message': 'Title is required.'})
+
+        content = CourseContent(
+            course=course,
+            content_type=content_type,
+            title=title,
+            note_file=note_file if content_type == CourseContent.CONTENT_NOTE else None,
+            video_file=video_file if content_type == CourseContent.CONTENT_VIDEO else None,
+            quiz_question=quiz_question if content_type == CourseContent.CONTENT_QUIZ else None,
+            quiz_answer=quiz_answer if content_type == CourseContent.CONTENT_QUIZ else None,
+            created_by=request.user,
+        )
+        content.save()
+        messages.success(request, 'Content added successfully.')
+        return redirect('course_detail', course_id=course.id)
+
+    return render(request, 'pages/faculty_add_content.html', {'course': course})
+
 def fclog(request):
     return render(request,'pages/facultylogin.html')
 

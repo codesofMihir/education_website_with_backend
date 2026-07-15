@@ -117,10 +117,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT=BASE_DIR/'media'
+# For production/deployment you should run `collectstatic`.
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATIC_URL='static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
 
 
 

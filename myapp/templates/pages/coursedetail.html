@@ -19,9 +19,46 @@
                 {{ course.description|default:"No description available yet." }}
             </p>
 
-            {% if request.user.is_authenticated %}
+{% if request.user.is_authenticated %}
                 {% if is_enrolled %}
                     <p style="text-align:center; font-weight:bold; color: green;">✓ You are enrolled in this course</p>
+
+                    <div style="margin-top:18px;">
+                        <h3 style="text-align:center; margin-bottom:10px;">Course Content</h3>
+
+                        {% if contents %}
+                            {% for item in contents %}
+                                <div style="border:1px solid #ddd; border-radius:10px; padding:12px; margin:10px 0;">
+                                    <div style="font-weight:bold;">{{ item.title }}</div>
+                                    <div style="color:#666; font-size:13px;">{{ item.get_content_type_display }}</div>
+
+                                    {% if item.content_type == 'note' %}
+                                        {% if item.note_file %}
+                                            <a href="{{ item.note_file.url }}" class="btn btn-primary" style="margin-top:10px;">Open Note</a>
+                                        {% endif %}
+                                    {% elif item.content_type == 'video' %}
+                                        {% if item.video_file %}
+                                            <div style="margin-top:10px;">
+                                                <video width="100%" controls>
+                                                    <source src="{{ item.video_file.url }}" type="video/mp4" />
+                                                </video>
+                                            </div>
+                                        {% endif %}
+                                    {% elif item.content_type == 'quiz' %}
+                                        <div style="margin-top:10px; font-size:14px;">
+                                            <b>Q:</b> {{ item.quiz_question }}
+                                            {% if item.quiz_answer %}
+                                                <div style="margin-top:8px;"><b>Answer:</b> {{ item.quiz_answer }}</div>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p style="text-align:center; color:#666;">No content added yet by faculty.</p>
+                        {% endif %}
+                    </div>
+
                     <a href="{% url 'studentdashboard' %}" class="btn btn-primary" style="display:block; width:fit-content; margin:15px auto;">Go to Dashboard</a>
                 {% else %}
                     <form method="post" action="{% url 'enroll_course' course.id %}" style="text-align:center;">
@@ -34,6 +71,7 @@
                     <a href="{% url 'userlogin' %}">Log in</a> to enroll in this course.
                 </p>
             {% endif %}
+
         </div>
     </div>
 </section>
