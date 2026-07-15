@@ -8,6 +8,7 @@ urlpatterns=[
     path('register/',registerview,name='register'),
     path('about/',about_view,name='aview'),
     path('contact/',contact_view,name='cview'),
+    path('help/',help_view,name='hview'),
     path('studentdashboard/',stdash,name='studentdashboard'),
     path('facultydashboard/',fcdash,name='facultydashboard'),
     path('facultylogin/',fclog,name='facultylogin'),

@@ -12,6 +12,8 @@ def explore_view(request):
 
 def about_view(request):
     return render(request,'pages/about.html')
+def help_view(request):
+    return render(request,'pages/help.html')
 @csrf_exempt
 def contact_view(request):
     if request.method == 'POST':
