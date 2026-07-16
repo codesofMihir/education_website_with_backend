@@ -13,20 +13,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <body>
 <div class="container">
 
-    <aside class="sidebar">
-        <div class="logo">
-            <h2>Faculty Panel</h2>
-        </div>
-
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-            <li><a href="#"><i class="fa-solid fa-book"></i> Add Course</a></li>
-            <li><a href="#"><i class="fa-solid fa-video"></i> Upload Video</a></li>
-            <li><a href="#"><i class="fa-solid fa-file-pdf"></i> Upload Notes</a></li>
-            <li><a href="#"><i class="fa-solid fa-list"></i> Manage Courses</a></li>
-            <li><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-        </ul>
-    </aside>
 
     <main class="main-content">
 
@@ -41,25 +27,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             <div class="card">
                 <i class="fa-solid fa-book"></i>
-                <h2>12</h2>
+                <h2>{{ courses_count }}</h2>
                 <p>Total Courses</p>
             </div>
 
             <div class="card">
                 <i class="fa-solid fa-video"></i>
-                <h2>48</h2>
+                <h2>{{ videos_count }}</h2>
                 <p>Total Videos</p>
             </div>
 
             <div class="card">
                 <i class="fa-solid fa-file"></i>
-                <h2>30</h2>
+                <h2>{{ notes_count }}</h2>
                 <p>Total Notes</p>
             </div>
 
             <div class="card">
                 <i class="fa-solid fa-user-graduate"></i>
-                <h2>150</h2>
+                <h2>{{ students_count }}</h2>
                 <p>Students</p>
             </div>
 
@@ -94,23 +80,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
                 <tbody>
 
-                    <tr>
-                        <td>Python Programming</td>
-                        <td>Video</td>
-                        <td>Today</td>
-                    </tr>
-
-                    <tr>
-                        <td>Java Fundamentals</td>
-                        <td>PDF Notes</td>
-                        <td>Yesterday</td>
-                    </tr>
-
-                    <tr>
-                        <td>Web Development</td>
-                        <td>Video</td>
-                        <td>2 Days Ago</td>
-                    </tr>
+                    {% if recent_uploads %}
+                        {% for item in recent_uploads %}
+                            <tr>
+                                <td>{{ item.course.product_name }}</td>
+                                <td>{{ item.get_content_type_display }}</td>
+                                <td>{{ item.created_at|date:"M d, Y" }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="3">No content uploaded yet.</td>
+                        </tr>
+                    {% endif %}
 
                 </tbody>
 

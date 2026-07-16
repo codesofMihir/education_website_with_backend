@@ -147,8 +147,30 @@ def fcdash(request):
     if not request.user.is_staff:
         return render(request, 'msg.html', {'message': 'Only faculty can access this page.'})
 
-    courses = Courses.objects.all()
-    return render(request,'pages/facultydashboard.html', {'courses': courses})
+    courses_qs = Courses.objects.all()
+
+    videos_count = CourseContent.objects.filter(content_type=CourseContent.CONTENT_VIDEO).count()
+    notes_count = CourseContent.objects.filter(content_type=CourseContent.CONTENT_NOTE).count()
+    students_count = Enrollment.objects.values('student_id').distinct().count()
+
+    # Recent uploads (latest course content)
+    recent_uploads = (
+        CourseContent.objects.select_related('course')
+        .order_by('-created_at')[:5]
+    )
+
+    return render(
+        request,
+        'pages/facultydashboard.html',
+        {
+            'courses': courses_qs,
+            'courses_count': courses_qs.count(),
+            'videos_count': videos_count,
+            'notes_count': notes_count,
+            'students_count': students_count,
+            'recent_uploads': recent_uploads,
+        }
+    )
 
 
 @login_required
