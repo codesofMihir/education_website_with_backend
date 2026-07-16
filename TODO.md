@@ -1,10 +1,11 @@
 # TODO
 
-## Completed
-- Update user login password eye toggle to work (userlogin.html)
-- Update user register password + confirm password eye toggle to work (register.html)
-- Update faculty login password eye toggle to work (facultylogin.html)
+## Deployment removal (keep only runserver)
+- [x] Remove deployment packages (`gunicorn`, `whitenoise`) from `requirements.txt`.
+- [x] Remove deployment-only settings (`STATIC_ROOT`) from `weducation_web/settings.py`.
+- [x] Leave DEBUG + `static()` media serving for runserver.
+- [x] Run `python manage.py runserver` to verify startup.
 
-## Next (not yet done)
-- Implement real Faculty login backend (views + urls + template form action) so faculty login works and can redirect to faculty dashboard securely.
+
+
 
