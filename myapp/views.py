@@ -144,7 +144,11 @@ def stdash(request):
 
 
 def fcdash(request):
-    return render(request,'pages/facultydashboard.html')
+    if not request.user.is_staff:
+        return render(request, 'msg.html', {'message': 'Only faculty can access this page.'})
+
+    courses = Courses.objects.all()
+    return render(request,'pages/facultydashboard.html', {'courses': courses})
 
 
 @login_required
@@ -184,6 +188,22 @@ def faculty_add_content(request, course_id):
     return render(request, 'pages/faculty_add_content.html', {'course': course})
 
 def fclog(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            messages.error(request, 'Invalid username or password')
+            return render(request, 'pages/facultylogin.html')
+
+        if not user.is_staff:
+            messages.error(request, 'You are not authorized as faculty.')
+            return render(request, 'pages/facultylogin.html')
+
+        login(request, user)
+        return redirect('facultydashboard')
+
     return render(request,'pages/facultylogin.html')
 
 def viewc1(request):

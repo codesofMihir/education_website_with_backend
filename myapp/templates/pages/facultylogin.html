@@ -10,7 +10,7 @@
             <img src="{%static 'img/logo.png'%}" alt="Weducation logo" width="40%">
             <p>FACULTY LOGIN</p>
 
-            <form method="post" action="#">
+            <form method="post" action="{% url 'facultylogin' %}">
                 {% csrf_token %}
 
                 <div class="name">
@@ -20,8 +20,10 @@
 
                 <div class="pass">
                     <label for="password">Password</label>
-                    <input type="password" placeholder=" enter 8 digit password" id="password" class="password-input" name="password">
-                    <i class="fa-regular fa-eye eye" id="faculty-eye" aria-label="Toggle password visibility" role="button" tabindex="0"></i>
+                    <input type="password" placeholder=" enter 8 digit password" id="password" class="password-input"
+                        name="password">
+                    <i class="fa-regular fa-eye eye" id="faculty-eye" aria-label="Toggle password visibility"
+                        role="button" tabindex="0"></i>
                 </div>
 
                 <script>
@@ -61,4 +63,3 @@
     </div>
 </section>
 {% endblock %}
-

@@ -24,7 +24,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             <li><a href="#"><i class="fa-solid fa-video"></i> Upload Video</a></li>
             <li><a href="#"><i class="fa-solid fa-file-pdf"></i> Upload Notes</a></li>
             <li><a href="#"><i class="fa-solid fa-list"></i> Manage Courses</a></li>
-            <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+            <li><a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
         </ul>
     </aside>
 
@@ -71,9 +71,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
             <div class="action-buttons">
 
-                <button>Add Course</button>
-                <button>Upload Video</button>
-                <button>Upload Notes</button>
+                <a class="btn btn-primary" href="{% url 'index' %}">Browse Courses</a>
+                <a class="btn btn-primary" href="#">(Pick a course below to add content)</a>
 
             </div>
 
@@ -119,7 +118,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
         </section>
 
+        <section class="manage">
+            <h2 style="margin-top:30px;">Add Lecture/Notes/Quiz</h2>
+            <p style="color:#666; font-size:14px;">Select a course then upload content.</p>
+
+            {% if courses %}
+                <div style="display:grid; gap:12px; margin-top:10px;">
+                    {% for c in courses %}
+                        <div style="border:1px solid #ddd; border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center; gap:12px;">
+                            <div>
+                                <div style="font-weight:bold;">{{ c.product_name }}</div>
+                                <div style="color:#666; font-size:13px;">Course ID: {{ c.id }}</div>
+                            </div>
+                            <a class="btn btn-primary" href="{% url 'faculty_add_content' c.id %}">Upload Content</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="color:#666;">No courses found.</p>
+            {% endif %}
+        </section>
+
     </main>
+
 
 </div>
 
