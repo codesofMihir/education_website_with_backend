@@ -17,7 +17,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <main class="main-content">
 
         <div class="header">
-            <h1>Welcome Faculty</h1>
+            <h1>Welcome {{ request.user.username }}</h1>
             <div class="profile">
                 <i class="fa-solid fa-user"></i>
             </div>

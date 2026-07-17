@@ -57,6 +57,11 @@ def indexview(request):
 @csrf_exempt
 def registerview(request):
     if request.method == 'POST':
+        # terms checkbox must be checked
+        accept_terms = request.POST.get('accept_terms')
+        if not accept_terms:
+            messages.error(request, 'Please accept terms & conditions to register.')
+            return redirect('register')
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -79,10 +84,12 @@ def registerview(request):
 @csrf_exempt
 def loginview(request):
     if request.method == 'POST':
+        remember_me = request.POST.get('remember_me')
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
+
         if user is None:
             messages.error(request, 'Invalid username or password')
             return redirect('userlogin')
@@ -95,13 +102,16 @@ def loginview(request):
 
 def course_detail(request, course_id):
     course = get_object_or_404(Courses, id=course_id)
-    is_enrolled = False
-    if request.user.is_authenticated:
-        is_enrolled = Enrollment.objects.filter(student=request.user, course=course).exists()
 
+    # Only students can enroll / view course contents via Enrollment.
+    # Staff should not be treated as enrolled students.
+    is_enrolled = False
     contents = []
-    if is_enrolled:
-        contents = CourseContent.objects.filter(course=course).order_by('-created_at')
+
+    if request.user.is_authenticated and not request.user.is_staff:
+        is_enrolled = Enrollment.objects.filter(student=request.user, course=course).exists()
+        if is_enrolled:
+            contents = CourseContent.objects.filter(course=course).order_by('-created_at')
 
     return render(request, 'pages/coursedetail.html', {
         'course': course,
@@ -111,6 +121,9 @@ def course_detail(request, course_id):
 
 @login_required
 def enroll_course(request, course_id):
+    if request.user.is_staff:
+        return render(request, 'msg.html', {'message': 'Faculty cannot enroll in courses.'})
+
     course = get_object_or_404(Courses, id=course_id)
     if request.method == 'POST':
         Enrollment.objects.get_or_create(student=request.user, course=course)
@@ -133,6 +146,9 @@ def rlog(request):
 
 @login_required
 def stdash(request):
+    if request.user.is_staff:
+        return render(request, 'msg.html', {'message': 'Faculty cannot access student dashboard.'})
+
     enrollments = Enrollment.objects.filter(student=request.user).select_related('course')
     enrolled_course_ids = [e.course_id for e in enrollments]
     contents = CourseContent.objects.filter(course_id__in=enrolled_course_ids).select_related('course')
@@ -211,6 +227,10 @@ def faculty_add_content(request, course_id):
 
 def fclog(request):
     if request.method == 'POST':
+        remember_me = request.POST.get('remember_me')
+        if not remember_me:
+            messages.error(request, 'Please check Remember me to continue.')
+            return render(request,'pages/facultylogin.html')
         username = request.POST.get('username')
         password = request.POST.get('password')
 

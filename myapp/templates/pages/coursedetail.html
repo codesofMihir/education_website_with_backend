@@ -38,10 +38,11 @@
                                         {% endif %}
                                     {% elif item.content_type == 'video' %}
                                         {% if item.video_file %}
-                                            <div style="margin-top:10px;">
+                                            <div style="margin-top:10px; display:grid; gap:10px;">
                                                 <video width="100%" controls>
                                                     <source src="{{ item.video_file.url }}" type="video/mp4" />
                                                 </video>
+                                                <a href="{{ item.video_file.url }}" class="btn btn-primary" download style="width:fit-content;">Download Video</a>
                                             </div>
                                         {% endif %}
                                     {% elif item.content_type == 'quiz' %}

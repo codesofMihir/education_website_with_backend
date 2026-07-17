@@ -77,10 +77,11 @@ body {
         width: 200px;
     }
 
-    .logo:hover #ocard,
-    .logo #ocard:hover {
+     .logo:hover #ocard,.logo #ocard:hover
+     {
         display: block !important;
     }
+
 
     
     .col-md-10 #ocard a{
