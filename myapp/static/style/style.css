@@ -461,11 +461,10 @@ body {
         transform: translateY(-2px);
     }
 
-    footer.ft {
-        margin-top: 500px;
-        margin-bottom: 0;
+    footer {
+        margin-top: 155px;
+        padding: 13px;
         text-align: center;
-        padding: 18px;
         background: cyan;
     }
 
