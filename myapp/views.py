@@ -51,7 +51,7 @@ def indexview(request):
 
     
 
-    return render(request,'pages\index.html' , context)
+    return render(request,'pages/index.html' , context)
 
 
 @csrf_exempt
