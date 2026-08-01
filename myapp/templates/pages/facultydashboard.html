@@ -21,6 +21,9 @@
         </div>
 
         <nav class="sidebar-nav">
+             <a href="{% url 'index' %}">
+                <i class="fa fa-home" aria-hidden="true"></i> Home
+            </a>
             <a href="{% url 'facultydashboard' %}" class="active">
                 <i class="fa-solid fa-gauge-high"></i> Dashboard
             </a>
@@ -30,9 +33,7 @@
             <a href="{% url 'hview' %}">
                 <i class="fa-regular fa-circle-question"></i> Help
             </a>
-            <a href="{% url 'index' %}">
-                <i class="fa fa-home" aria-hidden="true"></i> Home
-            </a>
+           
         </nav>
 
         <div class="sidebar-footer">
