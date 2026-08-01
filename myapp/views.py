@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count, Q
 from .models import *
 
 @login_required
@@ -163,10 +164,16 @@ def fcdash(request):
     if not request.user.is_staff:
         return render(request, 'msg.html', {'message': 'Only faculty can access this page.'})
 
-    courses_qs = Courses.objects.all()
+    courses_qs = Courses.objects.annotate(
+        video_count=Count('contents', filter=Q(contents__content_type=CourseContent.CONTENT_VIDEO)),
+        note_count=Count('contents', filter=Q(contents__content_type=CourseContent.CONTENT_NOTE)),
+        quiz_count=Count('contents', filter=Q(contents__content_type=CourseContent.CONTENT_QUIZ)),
+        enrollment_count=Count('enrollments', distinct=True),
+    )
 
     videos_count = CourseContent.objects.filter(content_type=CourseContent.CONTENT_VIDEO).count()
     notes_count = CourseContent.objects.filter(content_type=CourseContent.CONTENT_NOTE).count()
+    quizzes_count = CourseContent.objects.filter(content_type=CourseContent.CONTENT_QUIZ).count()
     students_count = Enrollment.objects.values('student_id').distinct().count()
 
     # Recent uploads (latest course content)
@@ -183,6 +190,7 @@ def fcdash(request):
             'courses_count': courses_qs.count(),
             'videos_count': videos_count,
             'notes_count': notes_count,
+            'quizzes_count': quizzes_count,
             'students_count': students_count,
             'recent_uploads': recent_uploads,
         }
